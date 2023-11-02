@@ -1,0 +1,6 @@
+Phân luồng thành 2 AppBarConfiguration và 1 Activity Binding -> chạy Navigation Drawer và Bottom Navigation đồng thời
++ nếu phân 2 Binding -> Closed App
++ không phân 2 AppBarConfiguration -> không bấm được Navigation Drawer nhưng vẫn kéo ra bấm bình thường được
++ truyền trùng binding.navView vào NavigationUI.setupWithNavController() của Bottom Navigation -> Bottom Navigation không dùng được
++ NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home); dùng chung cũng được mà phân 2 cái cũng được
++ truyền NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration1); vào cả Navigation Drawer và Bottom Navigation -> mất button bấm vào Navigation Drawer nhưng vẫn kéo ra được
