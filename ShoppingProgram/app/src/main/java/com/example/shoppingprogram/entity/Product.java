@@ -7,6 +7,7 @@ public class Product {
         this.productId = productId;
         this.description = description;
     }
+
     public int getProductId() {
         return productId;
     }
