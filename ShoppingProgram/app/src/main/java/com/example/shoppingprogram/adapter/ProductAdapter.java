@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,16 +18,13 @@ import com.example.shoppingprogram.R;
 import com.example.shoppingprogram.entity.Product;
 
 import java.util.List;
+
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder>{
     private Context context;
     private List<Product> lProduct;
     public ProductAdapter(Context context, List<Product> lProduct) {
         this.context = context;
         this.lProduct = lProduct;
-    }
-    public void setData(List<Product> list){
-        this.lProduct = list;
-        notifyDataSetChanged();
     }
     @NonNull
     @Override
@@ -41,17 +38,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         if(product == null){
             return;
         }
-        holder.imgProduct.setImageResource(product.getProductId());
-        holder.tvProductName.setText(product.getDescription());
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+        holder.product_img.setImageResource(product.getImgProduct());
+        holder.productName.setText(product.getProductName());
+        holder.productPrice.setText(product.getProductPrice());
+        //holder.add_to_cart.setImageResource(product.getAddToCartButton());
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickGoDetail(product);
+                onClickGoDetail();
             }
         });
-
     }
-    private void onClickGoDetail(Product product){
+    public void onClickGoDetail(){
         Intent intent = new Intent(context, ProductDetailsActivity.class);
         context.startActivity(intent);
     }
@@ -62,15 +60,24 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
         return 0;
     }
+    public void setData(List<Product> list){
+        this.lProduct = list;
+        //Update the data again when the content of that List changes
+        notifyDataSetChanged();
+    }
     public class ProductViewHolder extends RecyclerView.ViewHolder{
-        private LinearLayout linearLayout;
-        private ImageView imgProduct;
-        private TextView tvProductName;
+        private RelativeLayout relativeLayout;
+        private ImageView product_img;
+        private TextView productName;
+        private TextView productPrice;
+        private ImageButton add_to_cart;
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgProduct = itemView.findViewById(R.id.img_product);
-            tvProductName = itemView.findViewById(R.id.tv_productName);
-            linearLayout = itemView.findViewById(R.id.layout_item);
+            product_img = itemView.findViewById(R.id.product_img);
+            productName = itemView.findViewById(R.id.product_name);
+            productPrice = itemView.findViewById(R.id.product_price);
+            add_to_cart = itemView.findViewById(R.id.add_to_cart_in_list);
+            relativeLayout = itemView.findViewById(R.id.item_product);
         }
     }
 }
