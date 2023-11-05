@@ -4,23 +4,35 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.shoppingprogram.adapter.CategoryAdapter;
+import com.example.shoppingprogram.entity.Category;
+import com.example.shoppingprogram.ui.home.HomeViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppingprogram.databinding.ActivityHomeBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration1;
     private AppBarConfiguration appBarConfiguration2;
     private ActivityHomeBinding binding;
+    private HomeViewModel homeViewModel;
+    private RecyclerView rcvCategory;
+    private CategoryAdapter categoryAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
