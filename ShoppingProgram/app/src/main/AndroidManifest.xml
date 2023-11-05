@@ -41,5 +41,15 @@
             android:theme="@style/Theme.ShoppingProgram.NoActionBar">
 
         </activity>
+        <activity android:name=".OrderActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ShoppingProgram.NoActionBar">
+
+        </activity>
+        <activity android:name=".MessageActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ShoppingProgram.NoActionBar">
+
+        </activity>
     </application>
 </manifest>
